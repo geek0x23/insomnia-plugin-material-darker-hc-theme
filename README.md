@@ -2,6 +2,8 @@
 
 This is just a theme for the [Insomnia REST Client](https://insomnia.rest) that is designed to match the Material UI Darker (High Contrast) theme available for other editors.
 
+![Screenshot](screenshot.png)
+
 ## Installation
 
 1.  Open Insomnia Preferences (Cmd + ,)
@@ -15,6 +17,6 @@ This is just a theme for the [Insomnia REST Client](https://insomnia.rest) that 
 
 I've done my best to follow the Material Darker (HC) theme as closely as possible, with minimal deviations to just improve overall readability.
 
-Plesae note that syntax highlighting in Insomnia is actually driven by overall background colors.  Given that there are so few options available, this is the best match I could get.
+Please note that syntax highlighting in Insomnia is actually driven by overall background colors.  Given that there are so few options available, this is the best match I could get.
 
 Enjoy :)

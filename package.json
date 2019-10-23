@@ -1,6 +1,6 @@
 {
     "name": "insomnia-plugin-material-darker-hc-theme",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "A port of the Material Darker (High Contrast) theme for the Insomnia REST client.",
     "main": "index.js",
     "author": "Scott Anderson",

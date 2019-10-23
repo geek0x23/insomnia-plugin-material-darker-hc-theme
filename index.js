@@ -1,5 +1,6 @@
 'use strict';
 const colors = {
+    black: '#000000',
     red: '#ff5370',
     orange: '#f78c6c',
     yellow: '#ffcb6b',
@@ -21,6 +22,8 @@ const base = {
     name: 'material-darker-hc',
     displayName: 'Material Darker (HC)',
     theme: {
+        rawCss: `.CodeMirror-activeline-background,.CodeMirror-gutter-background {
+            background-color: ${colors.background} !important; }`,
         background: {
             default: colors.background,
             success: colors.green,

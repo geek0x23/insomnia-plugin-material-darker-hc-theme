@@ -1,78 +1,114 @@
 'use strict';
-module.exports.themes = [
-    {
-        name: 'material-darker-hc',
-        displayName: 'Material Darker (HC)',
-        theme: {
-            background: {
-                default: '#212121',
-                success: '#c3e88d',
-                notice: '#ffcb6b',
-                warning: '#ffb86c',
-                danger: '#f78c6c',
-                surprise: '#c792ea',
-                info: '#82aaff'
-            },
-            foreground: {
-                default: '#eeffff',
-                success: '#eeffff',
-                notice: '#eeffff',
-                warning: '#eeffff',
-                danger: '#eeffff',
-                surprise: '#eeffff',
-                info: '#eeffff'
-            },
-            highlight: {
-                default: 'rgba(97, 97, 97, 1)',
-                xxs: 'rgba(97, 97, 97, 0.5)',
-                xs: 'rgba(97, 97, 97, 0.5)',
-                sm: 'rgba(97, 97, 97, 0.5)',
-                md: 'rgba(97, 97, 97, 0.5)',
-                lg: 'rgba(97, 97, 97, 1)',
-                xl: 'rgba(97, 97, 97, 1)'
-            },
-            styles: {
-                link: {
-                    foreground: {
-                        default: '#c792ea'
-                    }
-                },
-                sidebar: {
-                    background: {
-                        default: '#1a1a1a'
-                    }
-                },
-                sidebarHeader: {
-                    background: {
-                        default: '#9563b7'
-                    },
-                    highlight: {
-                        default: '#9563b7',
-                        xs: '#9563b7', // hover
-                        md: '#9563b7' // bars and click
-                    }
-                },
-                dialog: {
-                    background: {
-                        default: '#212121'
-                    }
-                },
-                paneHeader: {
-                    background: {
-                        success: '#91b65e', // darken this from "#c3e88d" to make white text more legible.
-                        notice: '#ffcb6b',
-                        warning: '#ffb86c',
-                        danger: '#f78c6c',
-                        surprise: '#c792ea',
-                        info: '#82aaff'
-                    }
-                },
-                transparentOverlay: {
-                    background: {
-                        default: 'rgba(66, 66, 66, 0.5)'
-                    }
-                }
-            }
-        }
+const colors = {
+    red: '#ff5370',
+    orange: '#f78c6c',
+    yellow: '#ffcb6b',
+    green: '#c3e88d',
+    darkerGreen: '#91b65e',
+    blue: '#82aaff',
+    purple: '#c792ea',
+    darkerPurple: '#9563b7',
+    gray: '#848484',
+
+    background: '#212121',
+    darkerBackground: '#1a1a1a',
+    foreground: '#eeffff',
+    selection: 'rgba(97, 97, 97, 0.5)'
+};
+
+// establish a baseline
+const base = {
+    name: 'material-darker-hc',
+    displayName: 'Material Darker (HC)',
+    theme: {
+        background: {
+            default: colors.background,
+            success: colors.green,
+            notice: colors.yellow,
+            warning: colors.orange,
+            danger: colors.red,
+            surprise: colors.purple,
+            info: colors.blue
+        },
+        foreground: {
+            default: colors.foreground,
+            success: colors.foreground,
+            notice: colors.foreground,
+            warning: colors.foreground,
+            danger: colors.foreground,
+            surprise: colors.foreground,
+            info: colors.foreground
+        },
+        highlight: {
+            // controls text color when no other colors apply. (tab labels, timeline, side bar labels)
+            default: colors.gray,
+
+            // text box backgrounds, and tab exponent borders
+            xxs: colors.selection,
+
+            // background for side bar selections, scroll bars, keyboard shortcuts
+            xs: colors.selection,
+
+            // foreground and border for inactive tab exponents, pane header info boxes (time, size),
+            // popup menu borders, and popup menu hovers
+            sm: colors.selection,
+
+            // borders around any user-input area (text boxes, drop downs, tabs, etc.), also used
+            // as a background when a user clicks on a control (like tabs or popup menu entries)
+            md: colors.selection,
+
+            // code folding arrows. text hints inside text boxes.  separator lines on popup menus
+            // border around some buttons on the preferences menu.
+            lg: colors.gray,
+
+            // line numbers in the editor, keyboard shortcuts shown on popup menus,
+            xl: colors.gray
+        },
+        styles: {}
     }
-];
+};
+
+// hyperlinks
+base.theme.styles.link = {
+    foreground: {
+        default: colors.purple
+    }
+};
+
+// side bar
+base.theme.styles.sidebar = {
+    background: {
+        default: colors.darkerBackground
+    }
+};
+base.theme.styles.sidebarHeader = {
+    background: {
+        default: colors.darkerPurple
+    },
+    highlight: {
+        default: colors.darkerPurple,
+        xs: colors.darkerPurple, // hover
+        md: colors.darkerPurple // bars and click
+    }
+};
+
+// header bar above request details
+base.theme.styles.paneHeader = {
+    background: {
+        success: colors.darkerGreen, // darken this from "#c3e88d" to make white text more legible.
+        notice: colors.yellow,
+        warning: colors.orange,
+        danger: colors.red,
+        surprise: colors.purple,
+        info: colors.blue
+    }
+};
+
+// an overlay that is placed on top of everything when modal dialogs are opened.
+base.theme.styles.transparentOverlay = {
+    background: {
+        default: colors.selection
+    }
+};
+
+module.exports.themes = [base];

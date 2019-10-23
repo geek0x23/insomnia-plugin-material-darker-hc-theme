@@ -12,11 +12,8 @@ This is just a theme for the [Insomnia REST Client](https://insomnia.rest) that 
 4.  Click **Install Plugin**
 5.  Change your theme on the **Themes** tab
 
+## Contributions
 
-## Design Considerations
-
-I've done my best to follow the Material Darker (HC) theme as closely as possible, with minimal deviations to just improve overall readability.
-
-Please note that syntax highlighting in Insomnia is actually driven by overall background colors.  Given that there are so few options available, this is the best match I could get.
+I welcome any and all contributions to the project!  Pull requests welcome!
 
 Enjoy :)

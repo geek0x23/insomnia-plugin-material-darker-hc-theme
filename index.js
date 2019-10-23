@@ -1,12 +1,12 @@
 'use strict';
 const colors = {
-    black: '#000000',
     red: '#ff5370',
     orange: '#f78c6c',
     yellow: '#ffcb6b',
     green: '#c3e88d',
     darkerGreen: '#91b65e',
     blue: '#82aaff',
+    cyan: '#89ddff',
     purple: '#c792ea',
     darkerPurple: '#9563b7',
     gray: '#848484',
@@ -14,16 +14,80 @@ const colors = {
     background: '#212121',
     darkerBackground: '#1a1a1a',
     foreground: '#eeffff',
-    selection: 'rgba(97, 97, 97, 0.5)'
+    selection: 'rgba(97, 97, 97, 0.5)',
+    darkerSelection: 'rgba(97, 97, 97, 0.2)'
 };
+
+/*
+    highlight legend
+    ----------------
+
+    default: controls text color when no other colors apply. (tab labels, timeline, side bar labels)
+
+    xxs: text box backgrounds, and tab exponent borders
+
+    xs: background for side bar selections, scroll bars, keyboard shortcuts
+
+    sm: foreground and border for inactive tab exponents, pane header info boxes (time, size),
+        popup menu borders, and popup menu hovers
+
+    md: borders around any user-input area (text boxes, drop downs, tabs, etc.), also used
+        as a background when a user clicks on a control (like tabs or popup menu entries),
+        also used for the scrollbar handle (the part the user can drag)
+
+    lg: code folding arrows. text hints inside text boxes.  separator lines on popup menus
+        border around some buttons on the preferences menu.
+
+    xl: line numbers in the editor, keyboard shortcuts shown on popup menus,
+*/
 
 // establish a baseline
 const base = {
     name: 'material-darker-hc',
     displayName: 'Material Darker (HC)',
     theme: {
-        rawCss: `.CodeMirror-activeline-background,.CodeMirror-gutter-background {
-            background-color: ${colors.background} !important; }`,
+        // CSS hacks make me sad, but until the syntax highlighting can be controlled
+        // directly, this is the only way.
+        rawCss: `
+            .editor .CodeMirror-activeline-background,
+            .editor .CodeMirror-gutter-background,
+            .editor CodeMirror-linebackground {
+                background-color: ${colors.darkerBackground} !important;
+            }
+
+            .editor .CodeMirror-selected {
+                background-color: ${colors.gray};
+            }
+
+            .editor .cm-atom, .editor .cm-number {
+                color: ${colors.orange};
+            }
+
+            .editor .cm-string {
+                color: ${colors.green};
+            }
+
+            .editor .cm-string.cm-property {
+                color: ${colors.purple};
+            }
+
+            .editor .cm-attribute {
+                color: ${colors.purple};
+            }
+
+            .editor .cm-bracket {
+                color: ${colors.cyan};
+            }
+
+            .editor .cm-meta {
+                font-style: italic;
+                color: ${colors.gray};
+            }
+
+            .editor .cm-variable {
+                color: ${colors.red};
+            }
+            `,
         background: {
             default: colors.background,
             success: colors.green,
@@ -34,38 +98,11 @@ const base = {
             info: colors.blue
         },
         foreground: {
-            default: colors.foreground,
-            success: colors.foreground,
-            notice: colors.foreground,
-            warning: colors.foreground,
-            danger: colors.foreground,
-            surprise: colors.foreground,
-            info: colors.foreground
+            default: colors.foreground
         },
         highlight: {
-            // controls text color when no other colors apply. (tab labels, timeline, side bar labels)
             default: colors.gray,
-
-            // text box backgrounds, and tab exponent borders
-            xxs: colors.selection,
-
-            // background for side bar selections, scroll bars, keyboard shortcuts
-            xs: colors.selection,
-
-            // foreground and border for inactive tab exponents, pane header info boxes (time, size),
-            // popup menu borders, and popup menu hovers
-            sm: colors.selection,
-
-            // borders around any user-input area (text boxes, drop downs, tabs, etc.), also used
-            // as a background when a user clicks on a control (like tabs or popup menu entries)
-            md: colors.selection,
-
-            // code folding arrows. text hints inside text boxes.  separator lines on popup menus
-            // border around some buttons on the preferences menu.
-            lg: colors.gray,
-
-            // line numbers in the editor, keyboard shortcuts shown on popup menus,
-            xl: colors.gray
+            xl: colors.selection
         },
         styles: {}
     }
@@ -82,6 +119,10 @@ base.theme.styles.link = {
 base.theme.styles.sidebar = {
     background: {
         default: colors.darkerBackground
+    },
+    highlight: {
+        xs: colors.darkerSelection, // background for active item and scrollbar
+        md: colors.selection // scrollbar handle itself
     }
 };
 base.theme.styles.sidebarHeader = {
@@ -90,15 +131,21 @@ base.theme.styles.sidebarHeader = {
     },
     highlight: {
         default: colors.darkerPurple,
-        xs: colors.darkerPurple, // hover
-        md: colors.darkerPurple // bars and click
+        xs: colors.darkerPurple,
+        md: colors.darkerPurple
     }
 };
 
 // header bar above request details
+base.theme.styles.pane = {
+    highlight: {
+        xs: colors.background,
+        md: colors.selection
+    }
+};
 base.theme.styles.paneHeader = {
     background: {
-        success: colors.darkerGreen, // darken this from "#c3e88d" to make white text more legible.
+        success: colors.darkerGreen,
         notice: colors.yellow,
         warning: colors.orange,
         danger: colors.red,

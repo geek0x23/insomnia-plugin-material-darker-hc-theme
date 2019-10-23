@@ -49,12 +49,6 @@ const base = {
         // CSS hacks make me sad, but until the syntax highlighting can be controlled
         // directly, this is the only way.
         rawCss: `
-            .editor .CodeMirror-activeline-background,
-            .editor .CodeMirror-gutter-background,
-            .editor CodeMirror-linebackground {
-                background-color: ${colors.darkerBackground} !important;
-            }
-
             .editor .CodeMirror-selected {
                 background-color: ${colors.gray};
             }
